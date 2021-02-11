@@ -4,6 +4,7 @@ import { body, validationResult } from 'express-validator';
 import { RequestValidationError } from '../errors/request-validation-error';
 import { BadRequestError } from '../errors/bad-request.error';
 
+
 const router = express.Router();
 
 router.post('/api/users/signup', 
