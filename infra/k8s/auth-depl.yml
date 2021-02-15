@@ -6,7 +6,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: auth  
+      app: auth
   template:
     metadata:
       labels:
@@ -16,6 +16,8 @@ spec:
         - name: auth
           image: lordofcodes/auth
           env:
+            - name: MONGO_URI
+              value: mongodb://auth-mongo-srv:27017/auth
             - name: JWT_KEY
               valueFrom:
                 secretKeyRef:

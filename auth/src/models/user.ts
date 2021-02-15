@@ -7,6 +7,21 @@ interface UserAttrs {
   password: string;
 }
 
+
+// An interface that describes the props a User model has
+interface UserModel extends mongoose.Model<UserDoc> {
+  build(attrs: UserAttrs): UserDoc;
+}
+
+
+// An interface that describes the props a User document has
+interface UserDoc extends mongoose.Document {
+  email: string;
+  password: string;
+}
+
+
+
 const userSchema = new mongoose.Schema({
   email: {
     type: String,
@@ -27,17 +42,6 @@ const userSchema = new mongoose.Schema({
       }
     }
 }) 
-
-// An interface that describes the props a User model has
-interface UserModel extends mongoose.Model<UserDoc> {
-  build(attrs: UserAttrs): UserDoc;
-}
-
-// An interface that describes the props a User document has
-interface UserDoc extends mongoose.Document {
-  email: string;
-  password: string;
-}
 
 userSchema.pre('save', async function(done) {
   if (this.isDirectModified('password')) {
