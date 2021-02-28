@@ -1,13 +1,10 @@
-import express, { Request, Response} from 'express';
-import { currentUser } from '@nitti/common';
+import express from 'express';
+import { currentUser } from '@sgtickets/common';
 
 const router = express.Router();
 
-router.get(
-  '/api/users/currentuser',
-  currentUser,
-  (req: Request, res: Response) => {
-    res.send({ currentUser: req.currentUser || null });
+router.get('/api/users/currentuser', currentUser, (req, res) => {
+  res.send({ currentUser: req.currentUser || null });
 });
 
 export { router as currentUserRouter };
